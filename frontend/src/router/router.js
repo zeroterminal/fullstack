@@ -4,14 +4,14 @@ import Gallery from "../page/GalleryPage.vue";
 
 
 
-const links = [
+const routes = [
     { path: '/', component: Home },
     { path: '/gallery', component: Gallery },
 ]
 
 const router = createRouter({
     history: createWebHistory(),
-    links,
-})
+    routes,
+});
 
 export default router;
