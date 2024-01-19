@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Website;
+use App\Models\websites;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StorewebsitesRequest;
+use App\Http\Requests\UpdatewebsitesRequest;
 
-class WebsiteController extends Controller
+class WebsitesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class WebsiteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorewebsitesRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class WebsiteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Website $website)
+    public function show(websites $websites)
     {
         //
     }
@@ -43,7 +44,7 @@ class WebsiteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Website $website)
+    public function edit(websites $websites)
     {
         //
     }
@@ -51,7 +52,7 @@ class WebsiteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Website $website)
+    public function update(UpdatewebsitesRequest $request, websites $websites)
     {
         //
     }
@@ -59,8 +60,32 @@ class WebsiteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Website $website)
+    public function destroy(websites $websites)
     {
         //
     }
+
+    public function view_website()
+    {
+        $view_website  = Website::get()->all();
+        return response()->json($view_website);
+    }
+
+    // public function setWebsiteName(Request $request)
+    // {
+    //     $request->validate([
+    //         'name' => 'required|string',
+    //     ]);
+
+    //     Setting::updateOrCreate(['key' => 'website_name'], ['value' => $request->input('name')]);
+
+    //     return response()->json(['message' => 'Website name set successfully']);
+    // }
+
+    // public function getWebsiteName()
+    // {
+    //     $websiteName = Setting::where('key', 'website_name')->value('value');
+    //     return response()->json(['name' => $websiteName]);
+    // }
+
 }
