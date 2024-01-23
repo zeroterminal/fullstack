@@ -1,19 +1,25 @@
+import discord
 from discord.ext import commands
 
+intents = discord.Intents.default()
+intents.members = True
 
-class Welcome(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
-
-    @commands.Cog.listener()
-    async def on_member_join(self, member):
-        channel = member.guild.get_channel(
-            1199288009003106405
-        )  # Replace with the actual channel ID
-        if channel:
-            await channel.send(f"```Hello {member.mention}! Welcome to the server.```")
-            await channel.send(f"```مرحبة {member.mention}! .أهلاً بكم بشبكة خضر نت```")
+bot = commands.Bot(command_prefix="!", intents=intents)
 
 
-def setup(bot):
-    bot.add_cog(Welcome(bot))
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user.name}")
+
+
+@bot.event
+async def on_member_join(member):
+    channel_id = 1199288009003106405  # Replace with the actual channel ID
+    channel = member.guild.get_channel(channel_id)
+
+    if channel:
+        welcome_message = f"Hello {member.mention}! Welcome to the server."
+        arabic_message = f"مرحبة {member.mention}! .أهلاً بكم بشبكة خضر نت"
+
+        await channel.send(f"```{welcome_message}```")
+        await channel.send(f"```{arabic_message}```")
