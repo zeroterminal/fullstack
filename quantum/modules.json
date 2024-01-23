@@ -1,0 +1,5 @@
+{
+    "sample_module1": true,
+    "sample_module2": true,
+    "disabled_module": false
+}
