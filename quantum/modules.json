@@ -1,5 +1,5 @@
 {
-    "sample_module1": true,
+    "welcome": true,
     "sample_module2": true,
     "disabled_module": false
 }

@@ -4,37 +4,35 @@ import json
 import os
 
 intents = discord.Intents.default()
-intents.all()
+intents.members = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 
-# Load modules based on modules.json configuration
 def load_modules():
     with open("modules.json", "r") as file:
-        module_config = json.load(file)
+        modules_config = json.load(file)
 
-    for filename in os.listdir("modules"):
-        if filename.endswith(".py") and filename != "__init__.py":
-            module_name = filename[:-3]
-            if module_name in module_config and module_config[module_name]:
-                try:
-                    bot.load_extension(f"modules.{module_name}")
-                    print(f"Loaded module: {module_name}")
-                except Exception as e:
-                    print(f"Error loading module {module_name}: {e}")
-            else:
-                print(f"Module {module_name} is not enabled in modules.json")
+    modules_folder = "./addons/"
+    loaded_modules = []
+
+    for module, enabled in modules_config.items():
+        if enabled:
+            try:
+                bot.load_extension(f"{modules_folder}{module}")
+                loaded_modules.append(module)
+                print(f"Loaded module: {module}")
+            except Exception as e:
+                print(f"Error loading module {module}: {e}")
+
+    return loaded_modules
 
 
-@bot.event
 async def on_ready():
-    print(f"Logged in as {bot.user.name}")
-    load_modules()
-
-
-if __name__ == "__main__":
-    # Run your bot with the token
-    with open(file_path, "r", encoding="utf-8") as file:
-        kiwi_content = file.read()
-    bot.run(kiwi)
+    print(f'Logged in as {bot.user.name}')
+    loaded_modules = load_modules()
+    print(f'Loaded modules: {loaded_modules}')
+    
+with open(".kiwi", "r", encoding="utf-8") as file:
+    kiwi_content = file.read()
+bot.run(kiwi_content)
