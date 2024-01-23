@@ -35,4 +35,6 @@ async def on_ready():
 
 if __name__ == "__main__":
     # Run your bot with the token
-    bot.run("MTE5OTMyNjYwNDM2Nzc2OTYzMA.GS8aPZ.pQLl0rjS29lZzyBANyZwnKwEy4Lf8MAZzkkDGk")
+    with open(file_path, "r", encoding="utf-8") as file:
+        kiwi_content = file.read()
+    bot.run(kiwi)
