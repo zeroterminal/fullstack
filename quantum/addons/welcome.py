@@ -18,8 +18,8 @@ async def on_member_join(member):
     channel = member.guild.get_channel(channel_id)
 
     if channel:
-        welcome_message = f"Hello {member.mention}! Welcome to the server."
-        arabic_message = f"مرحبة {member.mention}! .أهلاً بكم بشبكة خضر نت"
+        welcome_message = f"Hello { member.mention }! Welcome to the server."
+        arabic_message = f"مرحبة { member.mention }! .أهلاً بكم بشبكة خضر نت"
 
-        await channel.send(f"```{welcome_message}```")
-        await channel.send(f"```{arabic_message}```")
+        await channel.send(f"```{ welcome_message }```")
+        await channel.send(f"```{ arabic_message }```")
