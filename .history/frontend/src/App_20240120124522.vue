@@ -11,7 +11,7 @@
 // import HelloWorld from './page/HomePage.vue'
 
 export default {
-  name: 'App', 
+  name: 'App',
 
   components: {
     HelloWorld,
